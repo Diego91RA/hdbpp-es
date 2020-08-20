@@ -74,7 +74,7 @@ if(FETCH_LIBHDBPP)
     set(BACKEND_LIBRARY_TARGET "libhdbpp_shared_library")
 
 elseif(NOT LIBHDBPP_PROJECT_BUILD AND NOT FETCH_LIBHDBPP)
-    find_library(LIBHDBPP_LIB_SEARCH libhdb++.so.2 PATHS LIBRARY_PATHS)
+    find_library(LIBHDBPP_LIB_SEARCH libhdb++timescale.so.2 PATHS LIBRARY_PATHS)
     message(STATUS "Found: ${LIBHDBPP_LIB_SEARCH}")
 endif()
 
