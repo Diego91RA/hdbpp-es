@@ -261,7 +261,7 @@ void SharedData::start(string &signame)
 {
 	ReaderLock lock(veclock);
 	vector<string> contexts;	//TODO: not used in add(..., true)!!!
-	Tango::DevULong ttl;	//TODO: not used in add(..., true)!!!
+
 	for (auto &signal : signals)
 	{
 		if (signal.name == signame)
@@ -275,7 +275,7 @@ void SharedData::start(string &signame)
 					try
 					{
 						add(signame, contexts, NOTHING, true);
-						updatettl(signame, ttl);
+
 					}
 					catch (Tango::DevFailed &e)
 					{
@@ -314,7 +314,7 @@ void SharedData::start(string &signame)
 					try
 					{
 						add(signame, contexts, NOTHING, true);
-						updatettl(signame, ttl);
+
 					}
 					catch (Tango::DevFailed &e)
 					{
@@ -1085,6 +1085,7 @@ void SharedData::add(string &signame, const vector<string> & contexts, int to_do
 		signal->first = true;
 		signal->first_err = true;
 		signal->periodic_ev = -1;
+		signal->ttl=DEFAULT_TTL;
 		clock_gettime(CLOCK_MONOTONIC, &signal->last_ev);
 
 		if(found && start)
